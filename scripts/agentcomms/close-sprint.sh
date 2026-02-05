@@ -15,7 +15,7 @@ NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 # Validate sprint exists and get details
 echo "🔍 Validating sprint ${SPRINT_ID}..."
 
-SPRINT_DATA=$(curl -sS "${MC_SUPABASE_URL}/rest/v1/sprints?id=eq.${SPRINT_ID}&select=id,name,status,project_id,start_date,end_date" \
+SPRINT_DATA=$(curl -sS "${MC_SUPABASE_URL}/rest/v1/sprints?id=eq.${SPRINT_ID}&select=id,name,status,project_id,actual_start,planned_end" \
   -H "apikey: ${MC_SERVICE_KEY}" \
   -H "Authorization: Bearer ${MC_SERVICE_KEY}")
 
@@ -27,8 +27,8 @@ fi
 SPRINT_STATUS=$(echo "$SPRINT_DATA" | jq -r '.[0].status')
 SPRINT_NAME=$(echo "$SPRINT_DATA" | jq -r '.[0].name')
 PROJECT_ID=$(echo "$SPRINT_DATA" | jq -r '.[0].project_id')
-START_DATE=$(echo "$SPRINT_DATA" | jq -r '.[0].start_date')
-END_DATE=$(echo "$SPRINT_DATA" | jq -r '.[0].end_date')
+START_DATE=$(echo "$SPRINT_DATA" | jq -r '.[0].actual_start // "N/A"')
+END_DATE=$(echo "$SPRINT_DATA" | jq -r '.[0].planned_end // "N/A"')
 
 echo "📋 Sprint: ${SPRINT_NAME}"
 echo "   Status: ${SPRINT_STATUS}"
@@ -45,7 +45,7 @@ fi
 echo ""
 echo "🔍 Checking task completion..."
 
-TASKS_DATA=$(curl -sS "${MC_SUPABASE_URL}/rest/v1/tasks?sprint_id=eq.${SPRINT_ID}&select=id,title,status,assigned_agent_id" \
+TASKS_DATA=$(curl -sS "${MC_SUPABASE_URL}/rest/v1/tasks?sprint_id=eq.${SPRINT_ID}&select=id,title,status,assigned_to" \
   -H "apikey: ${MC_SERVICE_KEY}" \
   -H "Authorization: Bearer ${MC_SERVICE_KEY}")
 
@@ -105,7 +105,7 @@ if [[ $DONE_TASKS -gt 0 ]]; then
 ### ✅ Completed Tasks"
   while IFS= read -r task; do
     TITLE=$(echo "$task" | jq -r '.title')
-    ASSIGNED=$(echo "$task" | jq -r '.assigned_agent_id // "unassigned"')
+    ASSIGNED=$(echo "$task" | jq -r '.assigned_to // "unassigned"')
     COMPLETED_TASKS_SECTION="${COMPLETED_TASKS_SECTION}
 - ${TITLE} (assigned: ${ASSIGNED})"
   done < <(echo "$TASKS_DATA" | jq -c '.[] | select(.status == "done")')
