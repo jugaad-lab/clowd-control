@@ -38,19 +38,26 @@ case "$FILTER" in
     echo "📋 Tasks with status '${STATUS_FILTER}':"
     ;;
   --mine|*)
-    # Tasks assigned to me (any status except completed) OR claimable (to_agent is null, pending)
+    # Tasks assigned to me from BOTH tables
     echo "📋 Tasks for ${AGENT_ID}:"
+    
     echo ""
-    echo "=== Assigned to me ==="
+    echo "=== From tasks table (Dashboard) ==="
+    curl -sS "${MC_SUPABASE_URL}/rest/v1/tasks?assigned_to=eq.${AGENT_ID}&status=in.(backlog,assigned,in_progress,review,blocked)&order=priority.desc,created_at.asc" \
+      -H "apikey: ${MC_SERVICE_KEY}" \
+      -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[\(.status)] \(.id[:8])... | \(.title // "no title")"'
+    
+    echo ""
+    echo "=== From task_handoffs table (AgentComms) ==="
     curl -sS "${MC_SUPABASE_URL}/rest/v1/task_handoffs?to_agent=eq.${AGENT_ID}&status=in.(pending,claimed,in_progress)&order=priority.desc,created_at.asc" \
       -H "apikey: ${MC_SERVICE_KEY}" \
-      -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[\(.status)] \(.id[:8])... | \(.priority // "normal") | \(.title // "no title")"'
+      -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[\(.status)] \(.id[:8])... | \(.title // "no title") | from: \(.from_agent)"'
     
     echo ""
     echo "=== Claimable (broadcast) ==="
     curl -sS "${MC_SUPABASE_URL}/rest/v1/task_handoffs?to_agent=is.null&status=eq.pending&order=priority.desc,created_at.asc" \
       -H "apikey: ${MC_SERVICE_KEY}" \
-      -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[claimable] \(.id[:8])... | \(.priority // "normal") | \(.title // "no title")"'
+      -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[claimable] \(.id[:8])... | \(.title // "no title")"'
     exit 0
     ;;
 esac
