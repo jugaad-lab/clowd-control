@@ -58,13 +58,15 @@ interface MessageFiltersProps {
   agents: string[];
   messages: Array<{ message_type: string }>;
   messageTypes: string[];
+  filterHook: ReturnType<typeof useMessageFilters>;
 }
 
 export function MessageFilters({ 
   agents, 
-  messageTypes 
+  messageTypes,
+  filterHook 
 }: MessageFiltersProps) {
-  const { filters, updateFilter, clearFilters, hasActiveFilters } = useMessageFilters();
+  const { filters, updateFilter, clearFilters, hasActiveFilters } = filterHook;
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   return (

@@ -7,7 +7,7 @@ import { useTheme } from '@/lib/hooks';
 import { MessageList } from '@/components/messages/MessageList';
 import { MessageFilters, useMessageFilters } from '@/components/messages/MessageFilters';
 import { MessageDetails } from '@/components/messages/MessageDetails';
-import { MessageSearch } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Define the AgentMessage type based on the schema we saw
@@ -33,7 +33,8 @@ export default function MessagesPage() {
   const [sidePanelOpen, setSidePanelOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { theme, toggleTheme } = useTheme();
-  const filters = useMessageFilters();
+  const filterHook = useMessageFilters();
+  const { filters } = filterHook;
 
   useEffect(() => {
     async function fetchMessages() {
@@ -229,7 +230,7 @@ export default function MessagesPage() {
         {/* Search Bar */}
         <div className="mb-6">
           <div className="relative max-w-md">
-            <MessageSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-zinc-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-zinc-400" />
             <input
               type="text"
               placeholder="Search messages..."
@@ -246,6 +247,7 @@ export default function MessagesPage() {
             agents={agents} 
             messages={messages}
             messageTypes={Array.from(new Set(messages.map(m => m.message_type))).sort()}
+            filterHook={filterHook}
           />
         </div>
 
