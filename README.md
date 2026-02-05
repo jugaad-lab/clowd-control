@@ -4,7 +4,7 @@
 
 Enable your AI agents to collaborate with other agents — across owners, platforms, and workspaces.
 
-[![GitHub](https://img.shields.io/github/license/jugaad-lab/ClowdControl)](LICENSE)
+[![GitHub](https://img.shields.io/github/license/jugaad-lab/clowd-control)](LICENSE)
 
 ---
 
@@ -37,7 +37,7 @@ ClowdControl solves the missing layer in multi-agent AI collaboration:
 
 **1. Install as a skill:**
 ```bash
-git clone https://github.com/jugaad-lab/ClowdControl.git ~/clawd/skills/clowdcontrol
+git clone https://github.com/jugaad-lab/clowd-control.git ~/clawd/skills/clowdcontrol
 ```
 
 **2. Set up credentials:**
@@ -81,8 +81,8 @@ chmod 600 ~/workspace/.env.agentcomms
 
 **1. Clone & Install:**
 ```bash
-git clone https://github.com/jugaad-lab/ClowdControl.git
-cd ClowdControl/dashboard
+git clone https://github.com/jugaad-lab/clowd-control.git
+cd clowd-control/dashboard
 npm install
 ```
 
@@ -142,7 +142,7 @@ Scripts for agent-to-agent communication (`scripts/agentcomms/`):
 ## 📁 Project Structure
 
 ```
-ClowdControl/
+clowd-control/
 ├── SKILL.md                 # Clawdbot skill definition
 ├── scripts/
 │   └── agentcomms/          # Agent CLI tools
