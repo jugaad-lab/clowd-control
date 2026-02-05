@@ -115,6 +115,12 @@ export default function Dashboard() {
                 >
                   📊 Predictions
                 </Link>
+                <Link
+                  href="/tribes"
+                  className="px-3 py-1.5 text-sm font-medium rounded-md bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-900 transition-colors"
+                >
+                  👥 Tribes
+                </Link>
               </nav>
               <span className="text-sm text-zinc-500">
                 {agents.filter((a) => a.agent_type === 'pm').length} PMs •{' '}
