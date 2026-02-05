@@ -31,4 +31,8 @@ curl -sS -X POST "${MC_SUPABASE_URL}/rest/v1/agents" \
     \"last_seen\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
   }" | jq .
 
+# Log activity
+"$SCRIPT_DIR/log-activity.sh" "agent_registered" "agent" "$AGENT_ID" \
+  "$(jq -n --arg role "${ROLE:-agent}" --arg caps "$CAPABILITIES" '{role: $role, capabilities: $caps}')"
+
 echo "✅ Agent '${AGENT_ID}' registered"

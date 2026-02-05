@@ -45,3 +45,8 @@ TASK_ID=$(echo "$RESULT" | jq -r '.[0].id // .id // "unknown"')
 echo "✅ Task handed off to ${TO_AGENT}: ${TASK_ID}"
 echo "   Priority: ${PRIORITY}"
 echo "$RESULT" | jq .
+
+# Log activity
+"$SCRIPT_DIR/log-activity.sh" "task_delegated" "task_handoff" "$TASK_ID" \
+  "$(jq -n --arg to "$TO_AGENT" --arg title "$TASK" --arg priority "$PRIORITY" \
+    '{to_agent: $to, title: $title, priority: $priority}')"

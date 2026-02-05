@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ActivityLog, getRecentActivity, subscribeToActivity } from '@/lib/supabase';
-import { Activity, CheckCircle, Edit, Plus, Trash, User, MessageSquare } from 'lucide-react';
+import { Activity, CheckCircle, Edit, Plus, Trash, User, MessageSquare, XCircle, Hand, ArrowRight, Clock, Play, Pause } from 'lucide-react';
 
 const actionIcons: Record<string, React.ReactNode> = {
   task_assigned: <User className="w-4 h-4 text-blue-500" />,
@@ -11,8 +11,17 @@ const actionIcons: Record<string, React.ReactNode> = {
   task_created: <Plus className="w-4 h-4 text-green-500" />,
   task_completed: <CheckCircle className="w-4 h-4 text-green-600" />,
   task_deleted: <Trash className="w-4 h-4 text-red-500" />,
+  task_claimed: <Hand className="w-4 h-4 text-blue-500" />,
+  task_failed: <XCircle className="w-4 h-4 text-red-500" />,
+  task_delegated: <ArrowRight className="w-4 h-4 text-orange-500" />,
   proposal_created: <MessageSquare className="w-4 h-4 text-purple-500" />,
   proposal_updated: <Edit className="w-4 h-4 text-purple-400" />,
+  agent_status_changed: <Activity className="w-4 h-4 text-cyan-500" />,
+  agent_registered: <Plus className="w-4 h-4 text-green-500" />,
+  sprint_created: <Plus className="w-4 h-4 text-indigo-500" />,
+  sprint_updated: <Edit className="w-4 h-4 text-indigo-400" />,
+  sprint_opened: <Play className="w-4 h-4 text-green-500" />,
+  sprint_closed: <Pause className="w-4 h-4 text-zinc-500" />,
   default: <Activity className="w-4 h-4 text-zinc-400" />,
 };
 
@@ -22,10 +31,19 @@ const actionLabels: Record<string, string> = {
   task_created: 'created task',
   task_completed: 'completed task',
   task_deleted: 'deleted task',
+  task_claimed: 'claimed task',
+  task_failed: 'failed task',
+  task_delegated: 'delegated task',
   proposal_created: 'created proposal',
   proposal_updated: 'updated proposal',
+  agent_status_changed: 'changed status',
+  agent_registered: 'registered',
   sprint_created: 'created sprint',
   sprint_updated: 'updated sprint',
+  sprint_opened: 'started sprint',
+  sprint_closed: 'closed sprint',
+  test_connection: 'tested connection',
+  cli_tested: 'ran CLI test',
 };
 
 interface ActivityFeedProps {

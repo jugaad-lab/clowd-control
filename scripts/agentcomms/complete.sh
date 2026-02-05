@@ -24,3 +24,8 @@ RESULT=$(curl -sS -X PATCH "${MC_SUPABASE_URL}/rest/v1/task_handoffs?id=eq.${TAS
 
 echo "✅ Task ${TASK_ID} marked complete"
 echo "$RESULT" | jq .
+
+# Log activity
+TITLE=$(echo "$RESULT" | jq -r '.[0].title // "unknown"')
+"$SCRIPT_DIR/log-activity.sh" "task_completed" "task_handoff" "$TASK_ID" \
+  "$(jq -n --arg title "$TITLE" --arg msg "$RESULT_MSG" '{title: $title, message: $msg}')"

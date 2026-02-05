@@ -174,6 +174,11 @@ SPRINT_UPDATE=$(curl -sS -X PATCH "${MC_SUPABASE_URL}/rest/v1/sprints?id=eq.${SP
 
 echo "   Sprint status updated to 'completed'"
 
+# Log activity
+"$SCRIPT_DIR/log-activity.sh" "sprint_closed" "sprint" "$SPRINT_ID" \
+  "$(jq -n --arg name "$SPRINT_NAME" --argjson done "$DONE_TASKS" --argjson cancelled "$CANCELLED_TASKS" \
+    '{name: $name, tasks_completed: $done, tasks_cancelled: $cancelled}')"
+
 # Send Discord notification if webhook configured
 if [[ -n "${DISCORD_WEBHOOK_URL:-}" ]]; then
   echo "📢 Sending Discord notification..."

@@ -28,6 +28,11 @@ RESULT=$(curl -sS -X PATCH "${MC_SUPABASE_URL}/rest/v1/task_handoffs?id=eq.${TAS
 if echo "$RESULT" | jq -e 'length > 0' > /dev/null 2>&1; then
   echo "✅ Task ${TASK_ID} claimed by ${AGENT_ID}"
   echo "$RESULT" | jq .
+  
+  # Log activity
+  TITLE=$(echo "$RESULT" | jq -r '.[0].title // "unknown"')
+  "$SCRIPT_DIR/log-activity.sh" "task_claimed" "task_handoff" "$TASK_ID" \
+    "$(jq -n --arg title "$TITLE" '{title: $title}')"
 else
   echo "❌ Failed to claim task (may already be claimed)"
 fi

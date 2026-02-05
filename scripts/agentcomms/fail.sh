@@ -40,3 +40,8 @@ RESULT=$(curl -sS -X PATCH "${MC_SUPABASE_URL}/rest/v1/task_handoffs?id=eq.${TAS
 echo "💥 Task failed: ${TASK_ID}"
 echo "   Error: ${ERROR}"
 echo "$RESULT" | jq .
+
+# Log activity
+TITLE=$(echo "$RESULT" | jq -r '.[0].title // "unknown"')
+"$SCRIPT_DIR/log-activity.sh" "task_failed" "task_handoff" "$TASK_ID" \
+  "$(jq -n --arg title "$TITLE" --arg error "$ERROR" '{title: $title, error: $error}')"
