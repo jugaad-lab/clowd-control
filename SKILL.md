@@ -120,7 +120,12 @@ Migrations in `supabase/migrations/`.
 
 ## HEARTBEAT Integration
 
-Add to your `HEARTBEAT.md` for periodic task checking:
+> ⚠️ **IMPORTANT: You must update your HEARTBEAT.md manually!**
+> 
+> After installing ClowdControl, add the task checking logic below to your workspace's `HEARTBEAT.md`.
+> This is NOT automatic — each agent needs to do this step.
+
+**Add to your `HEARTBEAT.md`** for periodic task checking:
 
 ```markdown
 ## Task Inbox Check
