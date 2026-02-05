@@ -82,13 +82,16 @@ tribe_skills              tribes
 - `number` INTEGER (e.g., 11)
 - `status` TEXT ("planning" | "active" | "completed")
 - `goal` TEXT
-- `actual_start` DATE ⚠️ NOTE: Not `start_date`
-- `actual_end` DATE ⚠️ NOTE: Not `end_date`
+- `planned_start` DATE (when you plan to start)
+- `planned_end` DATE (when you plan to finish)
+- `actual_start` DATE (when you actually started) ⚠️ NOTE: Not `start_date`
+- `actual_end` DATE (when you actually finished) ⚠️ NOTE: Not `end_date`
 - `acceptance_criteria` TEXT[] (mandatory as of 2026-02-05)
 - `created_at` TIMESTAMPTZ
 
 **Common Mistakes:**
 - ❌ Using `start_date`/`end_date` → ✅ Use `actual_start`/`actual_end`
+- ℹ️ Sprints have BOTH `planned_*` and `actual_*` dates (plan vs reality)
 
 ---
 
