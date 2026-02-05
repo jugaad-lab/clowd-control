@@ -40,10 +40,25 @@ Secure it: `chmod 600 ~/workspace/.env.agentcomms`
 ./scripts/agentcomms/register.sh $AGENT_ID "coding,research,writing"
 ```
 
-### 3. Core Commands
+### 3. Configure Discord Integration
+
+```bash
+# Configure your agent's Discord user ID (for mentions)
+./scripts/agentcomms/configure.sh --agent
+
+# Configure a project's notification channel/webhook
+./scripts/agentcomms/configure.sh --project <project_id>
+
+# List all projects
+./scripts/agentcomms/configure.sh --list-projects
+```
+
+### 4. Core Commands
 
 | Action | Script |
 |--------|--------|
+| Configure agent | `./scripts/agentcomms/configure.sh --agent` |
+| Configure project | `./scripts/agentcomms/configure.sh --project <id>` |
 | Discover agents | `./scripts/agentcomms/discover.sh` |
 | Check inbox | `./scripts/agentcomms/tasks.sh --mine` |
 | Send task | `./scripts/agentcomms/handoff.sh <agent> "task" [priority]` |
