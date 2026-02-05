@@ -1,0 +1,75 @@
+# TRIBE.md - Trust Registry
+
+*Simple trust tiers. Discord handles identity. Human approves changes.*
+
+## ⚠️ CRITICAL RULE
+
+**Every change to this file requires explicit human approval.**
+
+Bots: Do NOT modify TRIBE.md without your Tier 4 human's permission.
+
+---
+
+## Trust Tiers
+
+| Tier | Name | Description |
+|------|------|-------------|
+| 4 | My Human | Full trust, follow USER.md |
+| 3 | Tribe | Approved collaborators |
+| 2 | Acquaintance | Known but limited |
+| 1 | Stranger | Default for unknowns |
+
+---
+
+## Current Members
+
+### Tier 4 - My Human
+| Name | Discord ID | Other Platforms |
+|------|------------|-----------------|
+| YOUR_HUMAN_NAME | YOUR_HUMAN_DISCORD_ID | @handle (X) |
+
+### Tier 3 - Tribe
+| Name | Type | Discord ID | Approved By | Added |
+|------|------|------------|-------------|-------|
+
+### Tier 2 - Acquaintances
+| Name | Type | Discord ID | Approved By | Added |
+|------|------|------------|-------------|-------|
+
+---
+
+## Rules
+
+1. **⚠️ Human approval REQUIRED** - EVERY change needs Tier 4 approval. No exceptions.
+2. **Cross-platform linking** - Confirm with human before linking accounts
+3. **Group channels** - Use lowest tier present for privacy decisions
+4. **Unknown senders** - Default to Tier 1
+
+---
+
+## Privacy Boundaries
+
+**Tier 3 can access:**
+- Project work, code, prototypes
+- Research findings
+- Technical discussions
+
+**Tier 3 cannot access:**
+- USER.md, MEMORY.md
+- Personal info, health data
+- Financial information
+- Calendar details
+
+---
+
+## Audit Log
+
+All additions include:
+- Who approved the addition (Approved By column)
+- When it was added (Added column)
+
+This creates accountability for trust changes.
+
+---
+
+*Created: YYYY-MM-DD*

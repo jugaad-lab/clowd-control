@@ -1,0 +1,32 @@
+{
+  "name": "tribe-protocol",
+  "version": "2.1.0",
+  "description": "Simple trust framework for multi-agent collaboration. No crypto - Discord handles identity, humans approve trust changes.",
+  "main": "scripts/lib/tribe-simple.js",
+  "bin": {
+    "tribe-lookup": "./scripts/tribe-lookup.js",
+    "tribe-list": "./scripts/tribe-list.js",
+    "tribe-verify": "./scripts/tribe-verify.js",
+    "tribe-add": "./scripts/tribe-direct-add.js"
+  },
+  "scripts": {
+    "lookup": "node scripts/tribe-lookup.js",
+    "list": "node scripts/tribe-list.js",
+    "verify": "node scripts/tribe-verify.js",
+    "add": "node scripts/tribe-direct-add.js",
+    "test": "node scripts/tribe-list.js"
+  },
+  "dependencies": {
+    "minimist": "^1.2.8"
+  },
+  "keywords": [
+    "tribe",
+    "trust",
+    "multi-agent",
+    "collaboration",
+    "clawdbot",
+    "skill"
+  ],
+  "author": "Cheenu",
+  "license": "MIT"
+}

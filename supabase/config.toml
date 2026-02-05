@@ -1,0 +1,21 @@
+# ClowdControl Supabase Configuration
+# https://supabase.com/docs/guides/cli/config
+
+[project]
+name = "clowdcontrol"
+version = "1"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+
+[db]
+port = 54322
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true

@@ -1,0 +1,80 @@
+# Project: [PROJECT_NAME]
+
+## Overview
+
+**Status:** Planning | Active | Paused | Completed
+**Discord Channel:** #channel-name
+**Repository:** https://github.com/org/repo
+**Deadline:** YYYY-MM-DD (optional)
+
+### Description
+
+[Brief description of what this project aims to achieve]
+
+---
+
+## Team
+
+### Owners (Humans)
+
+| Name | Role | Discord ID |
+|------|------|------------|
+| | Lead | |
+| | Member | |
+
+### Agents
+
+| Agent | Role | Responsibilities |
+|-------|------|------------------|
+| | PM | Coordinate sprints, track progress, unblock tasks |
+| | Developer | Implement features, fix bugs, code review |
+| | Researcher | Gather data, analyze options, write reports |
+| | Designer | UI/UX mockups, visual assets |
+| | Tester | QA, write tests, verify acceptance criteria |
+
+---
+
+## Sprints
+
+### Sprint 1: [Name]
+
+**Goal:** [What this sprint aims to achieve]
+**Status:** Planned | Active | Completed
+**Dates:** YYYY-MM-DD to YYYY-MM-DD
+
+#### Acceptance Criteria
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+#### Tasks
+
+| Task | Type | Assigned | Status | Priority |
+|------|------|----------|--------|----------|
+| | feature | | todo | medium |
+| | task | | todo | medium |
+
+---
+
+## Decisions Log
+
+| Date | Decision | Made By | Context |
+|------|----------|---------|---------|
+| | | | |
+
+---
+
+## Escalations
+
+Track unresolved issues that need human intervention.
+
+| Date | Issue | Status | Resolution |
+|------|-------|--------|------------|
+| | | pending | |
+
+---
+
+## Notes
+
+[Additional context, links, references]

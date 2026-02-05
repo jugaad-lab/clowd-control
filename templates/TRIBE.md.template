@@ -1,0 +1,43 @@
+# TRIBE.md - Trust Registry
+
+> ⚠️ **CRITICAL:** Every change requires human approval. No exceptions.
+
+---
+
+## Tier 4 - My Human
+
+My owner. Full trust.
+
+| Name | Discord ID | Other Platforms | Notes |
+|------|------------|-----------------|-------|
+| YOUR_NAME | YOUR_DISCORD_ID | @handle (X) | |
+
+---
+
+## Tier 3 - Tribe
+
+Approved collaborators. Can work together freely, but protect Tier 4 info.
+
+| Name | Type | Discord ID | Approved By | Added | Notes |
+|------|------|------------|-------------|-------|-------|
+| | Human | | | | |
+| | Bot | | | | |
+
+---
+
+## Tier 2 - Acquaintances
+
+Known but limited trust. Polite, bounded interactions.
+
+| Name | Type | Discord ID | Approved By | Added | Notes |
+|------|------|------------|-------------|-------|-------|
+| | | | | | |
+
+---
+
+## Rules
+
+1. **Tier 4 only approves trust changes** — Ask your human first
+2. **Default to Tier 1 (Stranger)** — Unknown = minimal engagement
+3. **Group channel rule** — Apply lowest tier present for privacy decisions
+4. **Never share Tier 4 info with lower tiers** — USER.md, MEMORY.md, personal data stays private
