@@ -11,8 +11,8 @@ AGENT_ID="${1:-${AGENT_ID:-$(hostname)}}"
 shift || true
 CAPABILITIES="${*:-coding,research,writing}"
 
-if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_ANON_KEY:-}" ]]; then
-  echo "❌ Missing MC_SUPABASE_URL or MC_ANON_KEY in .env"
+if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_SERVICE_KEY:-}" ]]; then
+  echo "❌ Missing MC_SUPABASE_URL or MC_SERVICE_KEY in .env"
   exit 1
 fi
 
@@ -20,8 +20,8 @@ fi
 CAPS_JSON=$(echo "$CAPABILITIES" | tr ',' '\n' | jq -R . | jq -s .)
 
 curl -sS -X POST "${MC_SUPABASE_URL}/rest/v1/agents" \
-  -H "apikey: ${MC_ANON_KEY}" \
-  -H "Authorization: Bearer ${MC_ANON_KEY}" \
+  -H "apikey: ${MC_SERVICE_KEY}" \
+  -H "Authorization: Bearer ${MC_SERVICE_KEY}" \
   -H "Content-Type: application/json" \
   -H "Prefer: return=representation,resolution=merge-duplicates" \
   -d "{

@@ -11,16 +11,16 @@ TO_AGENT="${1:?Usage: $0 <to_agent> <task> [priority]}"
 TASK="${2:?Usage: $0 <to_agent> <task> [priority]}"
 PRIORITY="${3:-normal}"
 
-if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_ANON_KEY:-}" ]]; then
-  echo "❌ Missing MC_SUPABASE_URL or MC_ANON_KEY in .env"
+if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_SERVICE_KEY:-}" ]]; then
+  echo "❌ Missing MC_SUPABASE_URL or MC_SERVICE_KEY in .env"
   exit 1
 fi
 
 FROM_AGENT="${AGENT_ID:-unknown}"
 
 RESULT=$(curl -sS -X POST "${MC_SUPABASE_URL}/rest/v1/task_handoffs" \
-  -H "apikey: ${MC_ANON_KEY}" \
-  -H "Authorization: Bearer ${MC_ANON_KEY}" \
+  -H "apikey: ${MC_SERVICE_KEY}" \
+  -H "Authorization: Bearer ${MC_SERVICE_KEY}" \
   -H "Content-Type: application/json" \
   -H "Prefer: return=representation" \
   -d "{

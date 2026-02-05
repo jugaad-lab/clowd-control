@@ -10,14 +10,14 @@ source "$SCRIPT_DIR/../.env" 2>/dev/null || true
 TASK_ID="${1:?Usage: $0 <task_id> [result_message]}"
 RESULT_MSG="${2:-Completed successfully}"
 
-if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_ANON_KEY:-}" ]]; then
-  echo "❌ Missing MC_SUPABASE_URL or MC_ANON_KEY in .env"
+if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_SERVICE_KEY:-}" ]]; then
+  echo "❌ Missing MC_SUPABASE_URL or MC_SERVICE_KEY in .env"
   exit 1
 fi
 
 RESULT=$(curl -sS -X PATCH "${MC_SUPABASE_URL}/rest/v1/task_handoffs?id=eq.${TASK_ID}" \
-  -H "apikey: ${MC_ANON_KEY}" \
-  -H "Authorization: Bearer ${MC_ANON_KEY}" \
+  -H "apikey: ${MC_SERVICE_KEY}" \
+  -H "Authorization: Bearer ${MC_SERVICE_KEY}" \
   -H "Content-Type: application/json" \
   -H "Prefer: return=representation" \
   -d "{

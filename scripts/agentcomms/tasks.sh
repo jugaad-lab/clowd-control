@@ -10,8 +10,8 @@ source "$SCRIPT_DIR/../.env" 2>/dev/null || true
 FILTER="${1:---mine}"
 AGENT_ID="${AGENT_ID:-unknown}"
 
-if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_ANON_KEY:-}" ]]; then
-  echo "❌ Missing MC_SUPABASE_URL or MC_ANON_KEY in .env"
+if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_SERVICE_KEY:-}" ]]; then
+  echo "❌ Missing MC_SUPABASE_URL or MC_SERVICE_KEY in .env"
   exit 1
 fi
 
@@ -32,5 +32,5 @@ esac
 
 echo ""
 curl -sS "${MC_SUPABASE_URL}/rest/v1/task_handoffs?${QUERY}" \
-  -H "apikey: ${MC_ANON_KEY}" \
-  -H "Authorization: Bearer ${MC_ANON_KEY}" | jq -r '.[] | "[\(.status)] \(.id[:8])... | \(.title // .task // "no title") | from: \(.from_agent)"'
+  -H "apikey: ${MC_SERVICE_KEY}" \
+  -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq -r '.[] | "[\(.status)] \(.id[:8])... | \(.title // .task // "no title") | from: \(.from_agent)"'

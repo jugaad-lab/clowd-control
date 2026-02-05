@@ -12,14 +12,14 @@ AGENT_ID="${AGENT_ID:-unknown}"
 
 if [[ "${1:-}" == "--check" ]]; then
   # Check status in registry
-  if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_ANON_KEY:-}" ]]; then
-    echo "❌ Missing MC_SUPABASE_URL or MC_ANON_KEY in .env"
+  if [[ -z "${MC_SUPABASE_URL:-}" || -z "${MC_SERVICE_KEY:-}" ]]; then
+    echo "❌ Missing MC_SUPABASE_URL or MC_SERVICE_KEY in .env"
     exit 1
   fi
   
   curl -sS "${MC_SUPABASE_URL}/rest/v1/agents?id=eq.${AGENT_ID}" \
-    -H "apikey: ${MC_ANON_KEY}" \
-    -H "Authorization: Bearer ${MC_ANON_KEY}" | jq .
+    -H "apikey: ${MC_SERVICE_KEY}" \
+    -H "Authorization: Bearer ${MC_SERVICE_KEY}" | jq .
   exit 0
 fi
 

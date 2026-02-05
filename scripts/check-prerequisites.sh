@@ -18,7 +18,7 @@ else
 fi
 
 # Check required vars
-for var in MC_SUPABASE_URL MC_ANON_KEY MY_AGENT_ID; do
+for var in MC_SUPABASE_URL MC_SERVICE_KEY MY_AGENT_ID; do
   if [ -z "${!var}" ]; then
     echo "❌ Missing $var in .env.agentcomms"
     ERRORS=$((ERRORS + 1))
@@ -36,11 +36,11 @@ else
 fi
 
 # Test Supabase connection (only if we have the URL)
-if [ -n "$MC_SUPABASE_URL" ] && [ -n "$MC_ANON_KEY" ]; then
+if [ -n "$MC_SUPABASE_URL" ] && [ -n "$MC_SERVICE_KEY" ]; then
   echo ""
   echo "Testing Supabase connection..."
   HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$MC_SUPABASE_URL/rest/v1/agents?limit=1" \
-    -H "apikey: $MC_ANON_KEY" 2>/dev/null)
+    -H "apikey: $MC_SERVICE_KEY" 2>/dev/null)
 
   if [ "$HTTP_CODE" = "200" ]; then
     echo "✅ Supabase connection OK (HTTP 200)"
