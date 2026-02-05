@@ -8,20 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial Clowd-Control skill with multi-agent coordination
-- AgentComms system for inter-agent communication via Supabase
-- PM Protocol for project management workflows
-- Next.js dashboard with real-time task monitoring
-- Sprint management with automatic task ordering
-- Task dependency tracking and blocking detection
-- Agent onboarding and handoff scripts
-- Supabase schema with RLS policies
-- Production hygiene files (SECURITY.md, CHANGELOG.md, templates)
+- **Token Budgeting System** (Sprint 11)
+  - Migration for `estimated_tokens`, `actual_tokens` columns on tasks
+  - `budget_status` view with alert thresholds
+  - Budget scripts: `check-budget.sh`, `update-budget.sh`
+  - Comprehensive documentation in `docs/token-budgeting.md`
+- **Activity Logging** - `log-activity.sh` for agent status tracking
+- **Tribes Dashboard Page** - UI for managing tribes and shared skills
+- **CI/CD Pipeline** - GitHub Actions for lint, test, type-check, build
+- Production hygiene files (SECURITY.md, CODE_OF_CONDUCT.md, CHANGELOG.md)
 
 ### Infrastructure
-- Supabase backend with realtime subscriptions
-- Row-level security for multi-tenant safety
-- Dashboard with Tailwind CSS and shadcn/ui components
+- Supabase trigger for auto-updating project token totals
+- Database views for budget monitoring
 
 ## [0.1.0] - 2026-02-05
 

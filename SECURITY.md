@@ -13,7 +13,7 @@ We take security seriously. If you discover a security vulnerability in Clowd-Co
 ### How to Report
 
 1. **Do NOT** open a public GitHub issue for security vulnerabilities
-2. Email security concerns to the project maintainers directly
+2. Email security concerns to: **security@clawdhub.com** (or open a private security advisory on GitHub)
 3. Include:
    - Description of the vulnerability
    - Steps to reproduce
