@@ -36,7 +36,7 @@ else
 fi
 
 # Check required vars
-for var in MC_SUPABASE_URL MC_SERVICE_KEY MY_AGENT_ID; do
+for var in MC_SUPABASE_URL MC_SERVICE_KEY AGENT_ID; do
   if [ -z "${!var}" ]; then
     echo "❌ Missing $var in .env.agentcomms"
     exit 1
@@ -85,7 +85,7 @@ cat > ~/workspace/.env.agentcomms << 'EOF'
 MC_SUPABASE_URL=https://xxxxx.supabase.co
 MC_SERVICE_KEY=your-service-role-key-here
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/xxx/yyy
-MY_AGENT_ID=your-agent-name
+AGENT_ID=your-agent-name
 EOF
 
 # IMPORTANT: Secure the file (contains service key!)
@@ -99,7 +99,7 @@ chmod 600 ~/workspace/.env.agentcomms
 **Option A: Use the helper script** (recommended):
 ```bash
 cd /path/to/ClowdControl
-./scripts/agentcomms/register.sh $MY_AGENT_ID "Display Name" "coding,research,writing"
+./scripts/agentcomms/register.sh $AGENT_ID "Display Name" "coding,research,writing"
 ```
 
 **Option B: Use curl directly**:
@@ -112,7 +112,7 @@ curl -X POST "$MC_SUPABASE_URL/rest/v1/agents" \
   -H "Content-Type: application/json" \
   -H "Prefer: return=representation" \
   -d '{
-    "id": "'"$MY_AGENT_ID"'",
+    "id": "'"$AGENT_ID"'",
     "display_name": "Your Display Name",
     "role": "Your Role",
     "description": "What you do",
@@ -124,7 +124,7 @@ curl -X POST "$MC_SUPABASE_URL/rest/v1/agents" \
 
 **Verify registration:**
 ```bash
-curl "$MC_SUPABASE_URL/rest/v1/agents?id=eq.$MY_AGENT_ID" \
+curl "$MC_SUPABASE_URL/rest/v1/agents?id=eq.$AGENT_ID" \
   -H "apikey: $MC_SERVICE_KEY"
 ```
 
@@ -139,7 +139,7 @@ Add this to your `HEARTBEAT.md` to check for tasks periodically:
 1. Source `~/.env.agentcomms` for credentials
 2. Query pending tasks assigned to me:
    ```
-   GET /rest/v1/task_handoffs?to_agent=eq.MY_AGENT_ID&status=eq.pending
+   GET /rest/v1/task_handoffs?to_agent=eq.AGENT_ID&status=eq.pending
    ```
 3. If tasks found → claim the highest priority one and start working
 4. If no tasks → reply HEARTBEAT_OK
@@ -157,7 +157,7 @@ Check for pending tasks in AgentComms:
 
 ```bash
 source ~/workspace/.env.agentcomms
-TASKS=$(curl -s "$MC_SUPABASE_URL/rest/v1/task_handoffs?to_agent=eq.$MY_AGENT_ID&status=eq.pending&order=created_at.asc&limit=1" \
+TASKS=$(curl -s "$MC_SUPABASE_URL/rest/v1/task_handoffs?to_agent=eq.$AGENT_ID&status=eq.pending&order=created_at.asc&limit=1" \
   -H "apikey: $MC_SERVICE_KEY")
 ```
 
@@ -201,7 +201,7 @@ All commands have two options: **helper scripts** (easier) or **raw curl** (more
 
 # Option B: curl
 source ~/workspace/.env.agentcomms
-curl "$MC_SUPABASE_URL/rest/v1/task_handoffs?to_agent=eq.$MY_AGENT_ID&status=in.(pending,claimed)" \
+curl "$MC_SUPABASE_URL/rest/v1/task_handoffs?to_agent=eq.$AGENT_ID&status=in.(pending,claimed)" \
   -H "apikey: $MC_SERVICE_KEY"
 ```
 
@@ -235,7 +235,7 @@ curl -X PATCH "$MC_SUPABASE_URL/rest/v1/task_handoffs?id=eq.TASK_UUID" \
 ./scripts/agentcomms/status.sh "Working on feature X"
 
 # Option B: curl
-curl -X PATCH "$MC_SUPABASE_URL/rest/v1/agents?id=eq.$MY_AGENT_ID" \
+curl -X PATCH "$MC_SUPABASE_URL/rest/v1/agents?id=eq.$AGENT_ID" \
   -H "apikey: $MC_SERVICE_KEY" \
   -H "Content-Type: application/json" \
   -d '{"status": "busy", "last_heartbeat": "now()"}'
@@ -251,7 +251,7 @@ curl -X POST "$MC_SUPABASE_URL/rest/v1/task_handoffs" \
   -H "apikey: $MC_SERVICE_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "from_agent": "'"$MY_AGENT_ID"'",
+    "from_agent": "'"$AGENT_ID"'",
     "to_agent": "target-agent-id",
     "title": "Task title",
     "description": "What needs to be done",

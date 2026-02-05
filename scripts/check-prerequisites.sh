@@ -18,7 +18,7 @@ else
 fi
 
 # Check required vars
-for var in MC_SUPABASE_URL MC_SERVICE_KEY MY_AGENT_ID; do
+for var in MC_SUPABASE_URL MC_SERVICE_KEY AGENT_ID; do
   if [ -z "${!var}" ]; then
     echo "❌ Missing $var in .env.agentcomms"
     ERRORS=$((ERRORS + 1))
