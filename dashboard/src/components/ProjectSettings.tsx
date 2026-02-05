@@ -76,6 +76,7 @@ export function ProjectSettings({ projectId, project, settings, onSettingsUpdate
   const [isOpen, setIsOpen] = useState(false);
   const [localSettings, setLocalSettings] = useState<ProjectSettingsType>({
     ...settings,
+    notify_channel: settings.notify_channel ?? null,
     notification_webhook_url: settings.notification_webhook_url ?? null,
     notification_types: settings.notification_types ?? DEFAULT_NOTIFICATION_TYPES,
   });
@@ -216,6 +217,7 @@ export function ProjectSettings({ projectId, project, settings, onSettingsUpdate
   const handleCancel = () => {
     setLocalSettings({
       ...settings,
+      notify_channel: settings.notify_channel ?? null,
       notification_webhook_url: settings.notification_webhook_url ?? null,
       notification_types: settings.notification_types ?? DEFAULT_NOTIFICATION_TYPES,
     });
@@ -528,7 +530,7 @@ export function ProjectSettings({ projectId, project, settings, onSettingsUpdate
               {/* Status indicator */}
               <span
                 className={`ml-auto inline-flex items-center gap-1.5 text-xs font-medium ${
-                  webhookConfigured
+                  (localSettings.notify_channel || webhookConfigured)
                     ? testResult === 'success'
                       ? 'text-green-600 dark:text-green-400'
                       : testResult === 'error'
@@ -539,25 +541,49 @@ export function ProjectSettings({ projectId, project, settings, onSettingsUpdate
               >
                 <span
                   className={`w-2 h-2 rounded-full ${
-                    webhookConfigured
+                    (localSettings.notify_channel || webhookConfigured)
                       ? testResult === 'error'
                         ? 'bg-red-500'
                         : 'bg-green-500'
                       : 'bg-zinc-400 dark:bg-zinc-600'
                   }`}
                 />
-                {webhookConfigured
+                {(localSettings.notify_channel || webhookConfigured)
                   ? testResult === 'error'
                     ? 'Error'
-                    : 'Configured'
+                    : localSettings.notify_channel
+                    ? 'Channel configured'
+                    : 'Webhook configured'
                   : 'Not configured'}
               </span>
             </div>
 
-            {/* Discord Webhook URL */}
+            {/* Discord Channel ID (Preferred) */}
             <div className="space-y-2">
               <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                Discord Webhook URL
+                Discord Channel ID <span className="text-green-600">(Preferred)</span>
+              </label>
+              <input
+                type="text"
+                placeholder="e.g., 1234567890123456789"
+                value={localSettings.notify_channel || ''}
+                onChange={(e) => {
+                  setLocalSettings({
+                    ...localSettings,
+                    notify_channel: e.target.value || null,
+                  });
+                }}
+                className="w-full px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm font-mono"
+              />
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Right-click channel → Copy Channel ID. Enables @mentions for PMs.
+              </p>
+            </div>
+
+            {/* Discord Webhook URL (Fallback) */}
+            <div className="space-y-2">
+              <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                Discord Webhook URL <span className="text-zinc-400">(Fallback)</span>
               </label>
               <input
                 type="url"
@@ -594,7 +620,7 @@ export function ProjectSettings({ projectId, project, settings, onSettingsUpdate
                   ? 'Test Passed'
                   : testResult === 'error'
                   ? 'Test Failed — Check URL'
-                  : 'Test Connection'}
+                  : 'Test Webhook'}
               </button>
             </div>
 

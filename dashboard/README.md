@@ -110,8 +110,16 @@ useEffect(() => {
 
 ### Environment Variables
 
+**Required:**
 - `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anon key
+
+**Discord Notifications (optional):**
+- `DISCORD_TOKEN` - Bot token for channel-based notifications with @mentions (preferred)
+- `DISCORD_WEBHOOK_URL` - Fallback webhook URL if DISCORD_TOKEN not set
+
+**Note:** Channel-based notifications (`notify_channel` in project settings) require `DISCORD_TOKEN`. 
+Webhook-based notifications work without it but don't support @mentions.
 
 ## License
 
