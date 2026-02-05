@@ -76,7 +76,7 @@ What the PM MUST provide when assigning work:
 | Input | Required | Format | Example |
 |-------|----------|--------|---------|
 | TASK.md | Yes | Markdown file | See template below |
-| Project Path | Yes | Absolute path | `/Users/yajat/workspace/projects/mission-control` |
+| Project Path | Yes | Absolute path | `<project-root>/mission-control` |
 | Branch Name | No | String | `feature/add-agent-editor` |
 | Acceptance Criteria | Yes | Checklist | "API returns 200, tests pass" |
 | Allowed Tools | No | List | `Bash(*), Edit(*), Write(*)` |

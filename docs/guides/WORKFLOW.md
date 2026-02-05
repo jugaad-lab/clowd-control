@@ -23,7 +23,7 @@ Together:
 3. Discuss tradeoffs
 4. Converge on a common solution
 
-If disagreement → @yajatns and @nagaconda are tiebreakers
+If disagreement → <admin> and <stakeholder> are tiebreakers
 ```
 
 ### Phase 3: Breakdown (Joint)
@@ -58,7 +58,7 @@ Peer review process:
 ```
 Final approval:
 1. Notify humans PR is ready
-2. @yajatns or @nagaconda reviews
+2. <admin> or <stakeholder> reviews
 3. Human approves or requests changes
 4. Merge only after human approval
 ```
@@ -112,7 +112,7 @@ When bots disagree:
 
 1. Each bot states their position clearly
 2. List pros/cons of each approach
-3. Tag humans: @yajatns @nagaconda
+3. Tag humans: <admin> <stakeholder>
 4. Wait for human decision
 5. Proceed with chosen approach (no grudges! 🤝)
 
@@ -163,7 +163,7 @@ Why: Personal server, solo work
 
 ### ❌ Scenario 4: Chhotu's FPL analysis
 ```
-Context: yajatns's server
+Context: <admin>'s server
 Task: Weekly FPL performance review
 Workflow: NO → Standard personal workflow
 Why: Personal server, solo work

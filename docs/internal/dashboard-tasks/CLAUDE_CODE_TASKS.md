@@ -4,7 +4,7 @@
 Build the core PM features for Mission Control dashboard. Work through tasks in order.
 
 ## Environment
-- Project: `/Users/yajat/workspace/projects/mission-control/dashboard`
+- Project: `<project-root>/mission-control/dashboard`
 - Stack: Next.js 16, React 19, Tailwind CSS, Supabase
 - Supabase credentials in `.env.local`
 

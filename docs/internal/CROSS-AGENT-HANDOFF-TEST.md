@@ -12,9 +12,9 @@
 ### 1.1 AgentComms Documentation Review
 
 **Sources reviewed:**
-- `/Users/yajat/workspace/projects/mission-control/docs/MISSION_CONTROL.md`
-- `/Users/yajat/workspace/projects/mission-control/docs/LESSONS-LEARNED.md`
-- `/Users/yajat/workspace/projects/mission-control/docs/TRIBES-DESIGN.md`
+- `<project-root>/mission-control/docs/MISSION_CONTROL.md`
+- `<project-root>/mission-control/docs/LESSONS-LEARNED.md`
+- `<project-root>/mission-control/docs/TRIBES-DESIGN.md`
 
 **Key findings:**
 - Mission Control uses Supabase backend for persistent state and real-time updates
@@ -53,7 +53,7 @@ backlog → assigned → in_progress → done
 ### 2.1 Agent Registry
 
 **PM Agents:**
-- `chhotu` - Primary PM (Jarvis), instance: chhotu-mac-mini
+- `chhotu` - Primary PM (Jarvis), instance: <your-instance>
 - `cheenu` - Secondary PM (Friday), instance: cheenu-ec2
 
 **Active Tasks for Cheenu:**

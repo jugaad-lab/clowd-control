@@ -88,7 +88,7 @@ Check `skill/` directory for old name references.
 - [ ] All changes committed
 
 ## Project Location
-`/Users/yajat/workspace/projects/mission-control`
+`<project-root>/mission-control`
 
 ## Notes
 - Do NOT rename `chhotu` or `cheenu` — those are not Avengers names

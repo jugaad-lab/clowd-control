@@ -69,7 +69,7 @@ Quantity by depth:
 
 For each video, use youtube-transcript skill:
 ```
-Read /Users/yajat/workspace/skills/youtube-transcript/SKILL.md
+Read <project-root>/skills/youtube-transcript/SKILL.md
 ```
 
 Then fetch transcript and extract:
@@ -84,7 +84,7 @@ Then fetch transcript and extract:
 
 Use xai-search skill:
 ```
-Read /Users/yajat/workspace/skills/xai-search/SKILL.md
+Read <project-root>/skills/xai-search/SKILL.md
 ```
 
 Search for:

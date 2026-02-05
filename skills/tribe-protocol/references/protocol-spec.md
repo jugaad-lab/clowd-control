@@ -67,7 +67,7 @@ did:tribe:<name>:<hash>
 
 ### Examples
 - `did:tribe:cheenu:abc123`
-- `did:tribe:yajat-bot:def456`
+- `did:tribe:<admin>-bot:def456`
 - `did:tribe:chhotu:789xyz`
 
 ### Tribe ID Format

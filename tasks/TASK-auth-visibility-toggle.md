@@ -11,7 +11,7 @@
 Add project visibility controls and member management to the ProjectSettings component. Allow project admins to toggle visibility (public/private) and manage who has access.
 
 ## Project Location
-`/Users/yajat/workspace/projects/mission-control/dashboard`
+`<project-root>/mission-control/dashboard`
 
 ## Context
 - Projects have a `visibility` field (check schema — likely 'public' or 'private')

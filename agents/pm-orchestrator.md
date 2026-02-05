@@ -4,7 +4,7 @@
 - **Type:** pm
 - **Model:** sonnet4 / opus (depending on task complexity)
 - **Skill Level:** lead
-- **Instance:** chhotu-mac-mini (Clawdbot)
+- **Instance:** <your-instance> (Clawdbot)
 - **Token Budget:** Managed at project level
 
 ## Capabilities
@@ -112,7 +112,7 @@ What the HUMAN must provide to the PM:
 | Project Goal | Yes | Description | "Build a dashboard for multi-agent coordination" |
 | Success Criteria | Yes | Checklist | "Users can view projects, assign tasks" |
 | Constraints | No | List | "Budget: 500K tokens/sprint", "Timeline: 2 weeks" |
-| Stakeholders | No | List | "@yajat, @nag" |
+| Stakeholders | No | List | "<admin>, <stakeholder>" |
 | Priority | Yes | High/Med/Low | "High" |
 
 ## PM Responsibilities

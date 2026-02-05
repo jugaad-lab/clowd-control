@@ -11,7 +11,7 @@
 Make `acceptance_criteria` a required field when creating tasks through the API and dashboard UI.
 
 ## Project Location
-`/Users/yajat/workspace/projects/mission-control/dashboard`
+`<project-root>/mission-control/dashboard`
 
 ## Requirements
 1. **API route** (`src/app/api/tasks/route.ts`): Validate that `acceptance_criteria` is present and non-empty on POST. Return 400 if missing.

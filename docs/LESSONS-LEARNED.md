@@ -269,8 +269,8 @@ task_data = {
 
 **Common failure:**
 ```python
-# This fails if "yajat" isn't in agents table
-{"assigned_to": "yajat"}
+# This fails if "admin" isn't in agents table
+{"assigned_to": "admin"}
 ```
 
 **Solutions:**
@@ -465,7 +465,7 @@ assigned_to: null
 **Option 2: Human agents**
 ```sql
 INSERT INTO agents (id, display_name, agent_type) 
-VALUES ('yajat', 'Yajat', 'human');
+VALUES ('admin', 'Admin', 'human');
 ```
 
 **Option 3: Blocking dependencies**

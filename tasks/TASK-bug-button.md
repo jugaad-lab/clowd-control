@@ -6,7 +6,7 @@
 Add a floating "Report Bug" button (🐛) to the bottom-right of the Mission Control dashboard. Clicking it opens a simple modal to file a bug report that creates a task via the API.
 
 ## Context
-- Project: `/Users/yajat/workspace/projects/mission-control/dashboard`
+- Project: `<project-root>/mission-control/dashboard`
 - Stack: Next.js + Tailwind CSS + Supabase
 - Existing API: Check `dashboard/src/app/api/tasks/` for the POST endpoint
 

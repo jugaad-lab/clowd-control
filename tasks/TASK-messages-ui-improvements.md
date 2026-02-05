@@ -40,7 +40,7 @@ Work on: `chhotu/agent-messages-ui`
 - [ ] No TypeScript errors
 
 ## Project Location
-`/Users/yajat/workspace/skills/clowdcontrol/dashboard`
+`<project-root>/clowdcontrol/dashboard`
 
 ## Notes
 - Keep changes minimal and focused on the review feedback

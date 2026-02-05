@@ -1,6 +1,6 @@
 # Phase 8 Task: Dashboard Polish
 
-**Working Directory:** /Users/yajat/workspace/projects/mission-control/dashboard
+**Working Directory:** <project-root>/mission-control/dashboard
 
 ## Priority 1: Activity Feed Component
 

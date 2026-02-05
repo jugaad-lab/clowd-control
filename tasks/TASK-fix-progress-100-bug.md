@@ -106,4 +106,4 @@ Consider adding a sprint indicator to the legend:
 ```
 
 ## Project Location
-`/Users/yajat/workspace/projects/mission-control/dashboard/`
+`<project-root>/mission-control/dashboard/`

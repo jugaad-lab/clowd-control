@@ -151,7 +151,7 @@ if (tier < 4) {
 **Attack:**
 ```
 MaliciousBot joins Discord as "YajatBot"
-Claims DID: did:tribe:yajat:xyz789
+Claims DID: did:tribe:<admin>:xyz789
 Tries to access Tier 3 data
 ```
 

@@ -33,7 +33,7 @@ Browser → Dashboard (Next.js)
 
 ### 1.2 Create User Accounts
 Create accounts for the team:
-- **Yajat** — yajatns@gmail.com (admin/owner)
+- **Admin** — <admin-email> (admin/owner)
 - **Cheenu** — (Cheenu's email, ask him)
 - **Nag** — (Nag's email, ask him)
 
@@ -279,11 +279,11 @@ Add to project settings page:
 
 ### Step 3: Set Project Ownership
 ```sql
--- After Yajat's auth account is created:
-UPDATE projects SET owner_id = '{yajat_user_id}', visibility = 'team'
+-- After admin's auth account is created:
+UPDATE projects SET owner_id = '{admin_user_id}', visibility = 'team'
 WHERE name = 'Clowd-Control';
 
-UPDATE projects SET owner_id = '{yajat_user_id}', visibility = 'private'
+UPDATE projects SET owner_id = '{admin_user_id}', visibility = 'private'
 WHERE name = 'DpuDebugAgent';
 
 -- Add Cheenu + Nag as members of Clowd-Control

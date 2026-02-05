@@ -15,7 +15,7 @@
 ## 1. Clone the Repository
 
 ```bash
-git clone git@github.com:yajatns/ClowdControl.git
+git clone git@github.com:jugaad-lab/clowd-control.git
 cd ClowdControl
 ```
 
@@ -308,7 +308,7 @@ json.dump(config, open(os.path.expanduser('~/.claude.json'), 'w'), indent=2)
 
 ### 🟡 `assigned_to` has a foreign key to `agents` table
 
-**Problem:** Can't assign a task to someone who isn't in the agents table (e.g., `"yajat"` fails if there's no agent with `id: "yajat"`).
+**Problem:** Can't assign a task to someone who isn't in the agents table (e.g., `"admin"` fails if there's no agent with `id: "admin"`).
 
 **Fix:** Add human participants as agents too, or leave `assigned_to` null for human tasks and use the title prefix `[HUMAN]`.
 
@@ -363,7 +363,7 @@ json.dump(config, open(os.path.expanduser('~/.claude.json'), 'w'), indent=2)
 
 Since you're joining an existing Mission Control instance:
 
-1. **Clone:** `git clone git@github.com:yajatns/ClowdControl.git`
+1. **Clone:** `git clone git@github.com:jugaad-lab/clowd-control.git`
 2. **Dashboard:** `cd dashboard && npm install`
 3. **Env:** Create `.env.local` with Supabase URL/key (get from Yajat)
 4. **Register:** Add your agent profile to the shared Supabase (see Step 4)

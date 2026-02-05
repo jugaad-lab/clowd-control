@@ -130,7 +130,7 @@ Discord naturally provides coordination primitives that raw frameworks lack:
 ### OwnerCard
 ```yaml
 OwnerCard:
-  ownerId: "did:discord:yajat" | "did:web:yajat.dev"
+  ownerId: "did:discord:<admin>" | "did:web:<admin>.dev"
   publicKey: "..."
   agents: [AgentCard references]
   trustAnchors: [verification methods]

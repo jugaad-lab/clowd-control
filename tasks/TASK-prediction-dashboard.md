@@ -6,7 +6,7 @@
 Build a prediction accuracy dashboard component that shows estimated vs actual token usage per task/agent, with a running accuracy percentage to help calibrate future estimates.
 
 ## Context
-- Project: `/Users/yajat/workspace/projects/mission-control/dashboard`
+- Project: `<project-root>/mission-control/dashboard`
 - Stack: Next.js + Tailwind CSS + Supabase
 - The dashboard already exists — you're adding a new view/component
 - Tasks table has `tokens_consumed` field and budget predictions are tracked

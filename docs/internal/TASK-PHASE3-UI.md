@@ -5,7 +5,7 @@
 Build the UI for the anti-groupthink/PM consensus system.
 
 ## Location
-- **Dashboard:** `/Users/yajat/workspace/projects/mission-control/dashboard`
+- **Dashboard:** `<project-root>/mission-control/dashboard`
 - **Stack:** Next.js, React, Tailwind, shadcn/ui
 
 ## Build These Components

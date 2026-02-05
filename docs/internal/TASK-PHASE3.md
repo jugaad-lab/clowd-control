@@ -3,7 +3,7 @@
 Build the PM consensus and anti-groupthink system for Mission Control.
 
 ## Context
-- **Location:** `/Users/yajat/workspace/projects/mission-control/dashboard`
+- **Location:** `<project-root>/mission-control/dashboard`
 - **Stack:** Next.js 16, React 19, Tailwind, Supabase, shadcn/ui
 - **Supabase:** Already configured in `.env` (one level up)
 

@@ -8,7 +8,7 @@
 ## Still Needed
 
 ### 1. Database Schema (Priority)
-Add these tables to `/Users/yajat/workspace/projects/mission-control/supabase/schema.sql`:
+Add these tables to `<project-root>/mission-control/supabase/schema.sql`:
 
 ```sql
 -- Proposals requiring PM consensus

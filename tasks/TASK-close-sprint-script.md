@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS sprint_closing_reports (
 - `migrations/XXX_sprint_closing_reports.sql` — New migration
 
 ## Project Location
-`/Users/yajat/workspace/skills/clowdcontrol`
+`<project-root>/clowdcontrol`
 
 ## References
 - Existing scripts in `scripts/agentcomms/` for patterns

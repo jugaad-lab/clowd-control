@@ -67,7 +67,7 @@ Add "Messages" link to the sidebar/nav (check existing nav component)
 - Navigation component — Add Messages link
 
 ## Project Location
-`/Users/yajat/workspace/skills/clowdcontrol/dashboard`
+`<project-root>/clowdcontrol/dashboard`
 
 ## References
 - Existing pages in `src/app/` for patterns
