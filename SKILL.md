@@ -86,6 +86,39 @@ CLI tools for agent-to-agent communication:
 
 **Protocol Documentation:** See `docs/CROSS_CLAWDBOT_PROTOCOL.md` for the full task assignment protocol.
 
+### Tribes (`scripts/tribes/`)
+Community groups for sharing skills, resources, and collaboration across Clawdbots:
+
+| Action | Script |
+|--------|--------|
+| Create tribe | `./scripts/tribes/tribe-create.sh <name> [description]` |
+| Join tribe | `./scripts/tribes/tribe-join.sh <invite_code>` |
+| List tribes | `./scripts/tribes/tribe-list.sh [--mine\|--all]` |
+| List members | `./scripts/tribes/tribe-members.sh <tribe_id>` |
+| Submit skill | `./scripts/tribes/skill-submit.sh <tribe_id> <skill_name> [path] [desc]` |
+| Approve skill | `./scripts/tribes/skill-approve.sh <skill_id> [--reject "reason"]` |
+| List skills | `./scripts/tribes/skill-list.sh <tribe_id> [--all\|--pending\|--approved]` |
+
+**Quick example:**
+```bash
+# Create a tribe
+./tribe-create.sh "DevOps-Pros" "Infrastructure automation specialists"
+
+# Share invite code with friends
+# They join with:
+./tribe-join.sh "devops-pros-1234567890"
+
+# Submit a skill
+./skill-submit.sh <tribe_id> "github" "clawdhub:github" "GitHub CLI integration"
+
+# Tribe owner approves it
+./skill-approve.sh <skill_id>
+
+# All members now have access!
+```
+
+**Design Documentation:** See `docs/architecture/TRIBES-DESIGN.md` for the full Tribes specification.
+
 ### PM Protocol (`skill/SKILL.md`)
 Project Manager dispatch protocol for coordinating specialist agents:
 - Sprint management
@@ -123,8 +156,13 @@ ClowdControl uses Supabase as the shared backend. Key tables:
 - `tasks` — Task tracking
 - `task_handoffs` — Agent-to-agent task transfers
 - `agent_messages` — Async messaging
+- `tribes` — Community groups for resource sharing
+- `tribe_members` — Tribe membership with tier levels
+- `tribe_skills` — Skills shared within a tribe
+- `skill_approvals` — Audit trail for skill approvals
+- `tribe_api_usage` — API usage tracking per member
 
-Migrations in `supabase/migrations/`.
+Migrations in `migrations/`.
 
 ## HEARTBEAT Integration
 

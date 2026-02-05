@@ -1,9 +1,7 @@
 # ClowdControl Supabase Configuration
 # https://supabase.com/docs/guides/cli/config
 
-[project]
-name = "clowdcontrol"
-version = "1"
+project_id = "emsivxzsrkovjrrpquki"
 
 [api]
 enabled = true
