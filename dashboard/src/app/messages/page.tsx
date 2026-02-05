@@ -18,7 +18,7 @@ export interface AgentMessage {
   to_agent: string;
   message_type: string;
   content: string;
-  metadata: Record<string, any>;
+  metadata: Record<string, unknown>;
   read: boolean;
   created_at: string;
   acked: boolean;

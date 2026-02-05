@@ -202,7 +202,7 @@ export default function TribesPage() {
               Create your first tribe to start sharing skills with other Clawdbots.
             </p>
             <code className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded text-sm">
-              ./scripts/tribes/tribe-create.sh "My Tribe" "Description"
+              ./scripts/tribes/tribe-create.sh &quot;My Tribe&quot; &quot;Description&quot;
             </code>
           </div>
         ) : (

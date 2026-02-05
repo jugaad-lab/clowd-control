@@ -84,7 +84,7 @@ export function DependencyGraph({
 
     for (const [level, levelNodes] of levelGroups) {
       const totalHeight = levelNodes.length * (NODE_HEIGHT + NODE_GAP) - NODE_GAP;
-      let startY = 50;
+      const startY = 50;
 
       levelNodes.forEach((node, index) => {
         const x = 50 + level * (NODE_WIDTH + LEVEL_GAP);

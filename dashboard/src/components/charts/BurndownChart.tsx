@@ -49,9 +49,8 @@ export function BurndownChart({
 
   // Build chart data
   const today = new Date();
-  let cumulativeCompleted = 0;
 
-  const data: BurndownDataPoint[] = sprintDays.map((day, index) => {
+  const data: BurndownDataPoint[] = sprintDays.reduce<BurndownDataPoint[]>((acc, day, index) => {
     const dateStr = format(day, 'yyyy-MM-dd');
     const dayLabel = format(day, 'MMM d');
     
@@ -60,21 +59,26 @@ export function BurndownChart({
     
     // Actual remaining (only show up to today)
     const dayCompleted = completedPointsByDay[dateStr] || 0;
-    cumulativeCompleted += dayCompleted;
+    const prevCumulative = acc.length > 0 ? (totalPoints - (acc[acc.length - 1].actual ?? totalPoints)) : 0;
+    const cumulativeCompleted = prevCumulative + dayCompleted;
     
     const isPastOrToday = isBefore(day, today) || isEqual(format(day, 'yyyy-MM-dd'), format(today, 'yyyy-MM-dd'));
     const actual = isPastOrToday ? Math.max(0, totalPoints - cumulativeCompleted) : null;
 
-    return {
+    acc.push({
       date: dateStr,
       ideal: Math.round(ideal * 10) / 10,
       actual: actual !== null ? Math.round(actual * 10) / 10 : null,
       dayLabel,
-    };
-  });
+    });
+    return acc;
+  }, []);
 
   // Calculate current status
   const latestActual = data.filter(d => d.actual !== null).slice(-1)[0];
+  
+  // Calculate cumulative completed from the latest actual data point
+  const cumulativeCompleted = latestActual ? totalPoints - (latestActual.actual ?? totalPoints) : 0;
   const correspondingIdeal = latestActual ? data.find(d => d.date === latestActual.date)?.ideal : null;
   
   let status: 'ahead' | 'behind' | 'on-track' = 'on-track';

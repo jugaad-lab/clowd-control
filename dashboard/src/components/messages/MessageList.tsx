@@ -234,9 +234,9 @@ export function MessageList({ messages, onMessageClick, onMessageUpdate }: Messa
                       <span className="font-medium">Metadata:</span>
                       {' '}
                       {Object.keys(message.metadata).length} field(s)
-                      {message.metadata.review_score && (
+                      {'review_score' in message.metadata && message.metadata.review_score != null && (
                         <span className="ml-2 px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 rounded">
-                          Score: {message.metadata.review_score}
+                          Score: {String(message.metadata.review_score)}
                         </span>
                       )}
                     </div>
@@ -252,7 +252,7 @@ export function MessageList({ messages, onMessageClick, onMessageUpdate }: Messa
                         </span>
                       </div>
                       <p className="text-xs text-green-600 dark:text-green-400">
-                        "{message.ack_response}"
+                        {`"${message.ack_response}"`}
                       </p>
                     </div>
                   )}

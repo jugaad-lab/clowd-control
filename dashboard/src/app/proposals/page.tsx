@@ -122,11 +122,12 @@ export default function ProposalsPage() {
 
 function ProposalCard({ proposal }: { proposal: Proposal }) {
   const config = statusConfig[proposal.status] || statusConfig.open;
-  const content = proposal.content as Record<string, any>;
+  const content = proposal.content as Record<string, unknown>;
   
   // Check if this is a project creation proposal
   const isProjectProposal = content?.type === 'project_creation';
-  const projectName = isProjectProposal ? content?.project?.name : null;
+  const project = content?.project as Record<string, unknown> | undefined;
+  const projectName = isProjectProposal && project?.name ? String(project.name) : null;
 
   return (
     <Link

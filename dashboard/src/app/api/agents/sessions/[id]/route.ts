@@ -18,8 +18,12 @@ export async function PATCH(
       );
     }
 
-    const allowedFields = ['status', 'result_summary', 'tokens_used'];
-    const updates: any = {};
+    const allowedFields = ['status', 'result_summary', 'tokens_used'] as const;
+    const updates: {
+      status?: AgentSession['status'];
+      result_summary?: string;
+      tokens_used?: number;
+    } = {};
 
     for (const field of allowedFields) {
       if (field in body) {

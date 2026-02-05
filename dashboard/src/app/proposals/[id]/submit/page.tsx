@@ -173,7 +173,7 @@ export default function SubmitOpinionPage() {
                 Independent Input Mode
               </h2>
               <p className="text-sm text-amber-800 dark:text-amber-300/80">
-                To prevent groupthink, you cannot see other PMs' opinions until everyone has submitted.
+                To prevent groupthink, you cannot see other PMs&apos; opinions until everyone has submitted.
                 Your opinion is isolated and will be revealed simultaneously with others.
               </p>
             </div>

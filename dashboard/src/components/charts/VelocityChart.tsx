@@ -21,6 +21,18 @@ interface SprintVelocity {
   endDate?: string;
 }
 
+interface TooltipPayload {
+  payload: SprintVelocity;
+  value: number;
+  name: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: readonly TooltipPayload[];
+  label?: string | number;
+}
+
 interface VelocityChartProps {
   sprints: SprintVelocity[];
   className?: string;
@@ -76,7 +88,7 @@ export function VelocityChart({ sprints, className = '' }: VelocityChartProps) {
   };
 
   // Custom tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (!active || !payload || !payload.length) return null;
     
     const data = payload[0].payload as SprintVelocity;
@@ -160,7 +172,7 @@ export function VelocityChart({ sprints, className = '' }: VelocityChartProps) {
                 fontSize: 12,
               }}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: '#374151', opacity: 0.5 }} />
+            <Tooltip content={CustomTooltip} cursor={{ fill: '#374151', opacity: 0.5 }} />
             <ReferenceLine
               y={averageVelocity}
               stroke="#F59E0B"

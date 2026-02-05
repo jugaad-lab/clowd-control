@@ -13,6 +13,26 @@ import {
 } from 'recharts';
 import { formatTokens, getBudgetPercentage, getBudgetStatusColor } from '@/lib/agents';
 
+interface ChartDataPoint {
+  date: string;
+  tokens: number;
+  cumulative: number;
+  budgetLine?: number;
+  label?: string;
+}
+
+interface TooltipPayload {
+  payload: ChartDataPoint;
+  value: number;
+  name: string;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: readonly TooltipPayload[];
+  label?: string | number;
+}
+
 interface TokenUsageDataPoint {
   date: string;
   tokens: number;
@@ -28,15 +48,15 @@ interface TokenUsageChartProps {
 export function TokenUsageChart({ data, budget, className = '' }: TokenUsageChartProps) {
   // Calculate cumulative usage
   const chartData = useMemo(() => {
-    let cumulative = 0;
-    return data.map((point) => {
-      cumulative += point.tokens;
-      return {
+    return data.reduce<ChartDataPoint[]>((acc, point) => {
+      const prevCumulative = acc.length > 0 ? acc[acc.length - 1].cumulative : 0;
+      acc.push({
         ...point,
-        cumulative,
+        cumulative: prevCumulative + point.tokens,
         budgetLine: budget,
-      };
-    });
+      });
+      return acc;
+    }, []);
   }, [data, budget]);
 
   // Calculate statistics
@@ -72,7 +92,7 @@ export function TokenUsageChart({ data, budget, className = '' }: TokenUsageChar
   const gradientColor = statusColorMap[statusColor as keyof typeof statusColorMap];
 
   // Custom tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (!active || !payload || !payload.length) return null;
 
     const point = payload[0].payload;
@@ -164,7 +184,7 @@ export function TokenUsageChart({ data, budget, className = '' }: TokenUsageChar
                 fontSize: 12,
               }}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#6B7280', strokeDasharray: '5 5' }} />
+            <Tooltip content={CustomTooltip} cursor={{ stroke: '#6B7280', strokeDasharray: '5 5' }} />
             <ReferenceLine
               y={budget}
               stroke="#EF4444"

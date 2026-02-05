@@ -235,7 +235,7 @@ export function MessageDetails({
                         Response:
                       </p>
                       <p className="text-sm text-green-600 dark:text-green-400">
-                        "{message.ack_response}"
+                        {`"${message.ack_response}"`}
                       </p>
                     </div>
                   )}

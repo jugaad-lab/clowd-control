@@ -37,6 +37,19 @@ import {
   Loader2,
 } from 'lucide-react';
 
+// Type for proposal content - handles both project creation and generic proposals
+interface ProposalContent {
+  type?: 'project_creation' | string;
+  project?: {
+    name?: string;
+    description?: string;
+    plan?: unknown;
+    [key: string]: unknown;
+  };
+  plan?: unknown;
+  [key: string]: unknown;
+}
+
 type TabType = 'opinions' | 'concerns' | 'debate';
 
 const statusConfig: Record<Proposal['status'], { label: string; color: string; bg: string }> = {
@@ -282,20 +295,24 @@ export default function ProposalDetailPage() {
 
       <main className="max-w-5xl mx-auto px-4 py-6">
         {/* Project Creation Approval - Full review with PM selection */}
-        {(proposal.content as any)?.type === 'project_creation' && proposal.status === 'open' && (
+        {(proposal.content as ProposalContent)?.type === 'project_creation' && proposal.status === 'open' && (
           <ProjectApprovalCard 
             proposal={proposal}
             agents={agents}
             onApprove={async (selectedPmId: string) => {
               // Create the project with selected PM
-              const projectData = (proposal.content as any).project;
+              const projectData = (proposal.content as ProposalContent).project;
+              if (!projectData || !projectData.name) {
+                alert('Invalid project data in proposal');
+                return;
+              }
               const { data: newProject, error } = await supabase
                 .from('projects')
                 .insert({
                   name: projectData.name,
-                  description: projectData.description || null,
+                  description: (projectData.description as string) || null,
                   status: 'active',
-                  owner_type: projectData.owner_type || 'human',
+                  owner_type: (projectData.owner_type as string) || 'human',
                   owner_ids: ['yajat'],
                   current_pm_id: selectedPmId,
                   tags: [],
@@ -339,7 +356,7 @@ export default function ProposalDetailPage() {
         )}
 
         {/* Reveal State - only show for non-project-creation proposals */}
-        {(proposal.content as any)?.type !== 'project_creation' && !isRevealed && (
+        {(proposal.content as ProposalContent)?.type !== 'project_creation' && !isRevealed && (
           <div className="bg-white dark:bg-zinc-900 rounded-xl border-2 border-zinc-200 dark:border-zinc-800 p-8 text-center mb-6">
             <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800 mx-auto mb-4 flex items-center justify-center">
               <EyeOff className="w-8 h-8 text-zinc-400 dark:text-zinc-500" />
@@ -535,14 +552,15 @@ function ProjectApprovalCard({
 }) {
   const [loading, setLoading] = useState(false);
   const [selectedPm, setSelectedPm] = useState<string>('');
-  const content = proposal.content as any;
-  const project = content?.project || {};
-  const plan = content?.plan || project.plan || null;
+  const content = proposal.content as ProposalContent;
+  const project = content?.project;
+  const plan = content?.plan || project?.plan || null;
 
   // Initialize selected PM from proposal
   useEffect(() => {
-    setSelectedPm(project.pm_id || 'chhotu');
-  }, [project.pm_id]);
+    const pmId = project?.pm_id as string | undefined;
+    setSelectedPm(pmId || 'chhotu');
+  }, [project]);
 
   const pmAgents = agents.filter(a => a.agent_type === 'pm');
 
@@ -587,12 +605,12 @@ function ProjectApprovalCard({
         <dl className="space-y-3 text-sm">
           <div>
             <dt className="text-zinc-500 dark:text-zinc-400 mb-1">Name</dt>
-            <dd className="font-medium text-lg text-zinc-900 dark:text-white">{project.name || 'Unnamed'}</dd>
+            <dd className="font-medium text-lg text-zinc-900 dark:text-white">{project?.name || 'Unnamed'}</dd>
           </div>
-          {project.description && (
+          {project?.description && (
             <div>
               <dt className="text-zinc-500 dark:text-zinc-400 mb-1">Description</dt>
-              <dd className="text-zinc-700 dark:text-zinc-300">{project.description}</dd>
+              <dd className="text-zinc-700 dark:text-zinc-300">{String(project.description)}</dd>
             </div>
           )}
           <div>

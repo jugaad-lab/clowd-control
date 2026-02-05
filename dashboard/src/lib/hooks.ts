@@ -2,16 +2,19 @@
 
 import { useEffect, useState } from 'react';
 
+function getInitialTheme(): 'light' | 'dark' {
+  if (typeof window === 'undefined') return 'light';
+  const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return stored || (prefersDark ? 'dark' : 'light');
+}
+
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(getInitialTheme);
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = stored || (prefersDark ? 'dark' : 'light');
-    setTheme(initial);
-    document.documentElement.classList.toggle('dark', initial === 'dark');
-  }, []);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
 
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light';

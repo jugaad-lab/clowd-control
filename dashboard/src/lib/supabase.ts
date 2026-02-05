@@ -774,7 +774,7 @@ export async function updateAgentSession(
     tokens_used?: number;
   }
 ) {
-  const updateData: any = { ...updates };
+  const updateData: typeof updates & { completed_at?: string } = { ...updates };
   
   if (updates.status && updates.status !== 'running') {
     updateData.completed_at = new Date().toISOString();

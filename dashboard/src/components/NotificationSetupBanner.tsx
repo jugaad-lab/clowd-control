@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { X, Settings } from 'lucide-react';
 
 interface NotificationSetupBannerProps {
@@ -9,12 +9,18 @@ interface NotificationSetupBannerProps {
 
 const DISMISS_KEY_PREFIX = 'mc-notification-banner-dismissed-';
 
-export function NotificationSetupBanner({ projectId }: NotificationSetupBannerProps) {
-  const [dismissed, setDismissed] = useState(true); // start hidden to avoid flash
+function getInitialDismissed(projectId: string): boolean {
+  if (typeof window === 'undefined') return true;
+  const stored = localStorage.getItem(`${DISMISS_KEY_PREFIX}${projectId}`);
+  return stored === 'true';
+}
 
+export function NotificationSetupBanner({ projectId }: NotificationSetupBannerProps) {
+  const [dismissed, setDismissed] = useState(() => getInitialDismissed(projectId));
+
+  // Re-check when projectId changes
   useEffect(() => {
-    const stored = localStorage.getItem(`${DISMISS_KEY_PREFIX}${projectId}`);
-    setDismissed(stored === 'true');
+    setDismissed(getInitialDismissed(projectId));
   }, [projectId]);
 
   const handleDismiss = () => {
