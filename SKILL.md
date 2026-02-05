@@ -6,7 +6,7 @@ metadata:
     emoji: "🎯"
   version: "1.0.0"
   author: "jugaad-lab"
-  repository: "https://github.com/jugaad-lab/ClowdControl"
+  repository: "https://github.com/jugaad-lab/clowd-control"
 ---
 
 # ClowdControl
